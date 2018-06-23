@@ -52,7 +52,7 @@ class Config extends React.PureComponent {
 
   handleChange(property, e) {
     let value = e.target.value
-    if (property === 'ssh' || property === 'ssl') {
+    if (property === 'ssh' || property === 'ssl' || property === 'tlsDisableVerify') {
       value = e.target.checked
     }
     this.setProp(property, value)
@@ -128,6 +128,11 @@ class Config extends React.PureComponent {
           <input type="checkbox" id="ssl" onChange={this.handleChange.bind(this, 'ssl')} checked={this.getProp('ssl')} />
         </div>
         <div style={{display: this.getProp('ssl') ? 'block' : 'none'}}>
+          <div className="nt-form-row">
+            <label htmlFor="tlsDisableVerify">Disable Verify Cert:</label>
+            <input type="checkbox" id="tlsDisableVerify" onChange={this.handleChange.bind(this, 'tlsDisableVerify')} checked={this.getProp('tlsDisableVerify')}/>
+            <span>&nbsp; Disable certificate verification against CA</span>
+          </div>
           {this.renderCertInput('Private Key', 'tlskey')}
           {this.renderCertInput('Certificate', 'tlscert')}
           {this.renderCertInput('CA', 'tlsca')}

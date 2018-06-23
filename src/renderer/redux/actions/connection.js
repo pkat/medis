@@ -75,6 +75,7 @@ export const connectToRedis = createAction('CONNECT', config => ({getState, disp
       if (config.tlsca) config.tls.ca = config.tlsca;
       if (config.tlskey) config.tls.key = config.tlskey;
       if (config.tlscert) config.tls.cert = config.tlscert;
+      if (config.tlsDisableVerify) config.tls.rejectUnauthorized = false
     }
     const redis = new Redis(Object.assign({}, config, override, {
       retryStrategy() {
